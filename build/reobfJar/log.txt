@@ -1,4 +1,4 @@
-Args: "--in-jar", "/home/me/forge/forge-1.12.2-14.23.5.2859-mdk/build/libs/poomod-0.0.6.jar", "--out-jar", "/home/me/forge/forge-1.12.2-14.23.5.2859-mdk/build/reobfJar/output.jar", "--srg-in", "/home/me/forge/forge-1.12.2-14.23.5.2859-mdk/build/createMcpToSrg/output.tsrg", "--live"
+Args: "--in-jar", "/home/me/forge/mod/build/libs/poomod-0.0.6.jar", "--out-jar", "/home/me/forge/mod/build/reobfJar/output.jar", "--srg-in", "/home/me/forge/mod/build/createMcpToSrg/output.tsrg", "--live"
 Classpath: /home/me/.gradle/caches/forge_gradle/maven_downloader/net/md-5/SpecialSource/1.8.3/SpecialSource-1.8.3-shaded.jar
 Classpath: /home/me/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.12.2-14.23.5.2859_mapped_snapshot_20171003-1.12/forge-1.12.2-14.23.5.2859_mapped_snapshot_20171003-1.12-recomp.jar
 Classpath: /home/me/.gradle/caches/forge_gradle/minecraft_repo/versions/1.12.2/client-extra.jar
@@ -71,7 +71,7 @@ Classpath: /home/me/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/6.2/
 Classpath: /home/me/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/6.2/1b6c4ff09ce03f3052429139c2a68e295cae6604/asm-6.2.jar
 Classpath: /home/me/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.1.0/60eecb6f15abdb1c653ad80abaac6fe188b3feaa/plexus-utils-3.1.0.jar
 Classpath: /home/me/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.8.0-beta4/83b0359d847ee053d745be7ec0d8e9e8a44304b4/slf4j-api-1.8.0-beta4.jar
-WorkDir: /home/me/forge/forge-1.12.2-14.23.5.2859-mdk/build/reobfJar
+WorkDir: /home/me/forge/mod/build/reobfJar
 Main: net.md_5.specialsource.SpecialSource
 ====================================
 Loading mappings
