@@ -16,6 +16,7 @@ public class ModelRegistrationHandler {
 	public static void registerModels(ModelRegistryEvent event) {
 		registerModel(Items.poo, 0);
 		registerModel(Items.pee, 0);
+		registerModel(Items.poosword, 0);
 	}
 
     private static void registerModel(Item item, int meta) {
