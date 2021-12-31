@@ -1,3 +1,8 @@
+# This software is licenced under the GNU GPL V2.
+a copy is included below.
+
+
+
 ### GNU GENERAL PUBLIC LICENSE
 
 Version 2, June 1991
