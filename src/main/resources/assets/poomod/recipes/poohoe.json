@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP ",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "P": {
+      "item": "poomod:poo"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "poomod:poohoe"
+  }
+}
+
