@@ -1,5 +1,6 @@
 package WetSpaghett.Mods.PooMod.Client;
 
+import WetSpaghett.Mods.PooMod.PooMod;
 import WetSpaghett.Mods.PooMod.Items;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -9,23 +10,25 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@EventBusSubscriber(value = Side.CLIENT, modid = WetSpaghett.Mods.PooMod.PooMod.MODID)
+import java.util.Objects;
+
+@EventBusSubscriber(value = Side.CLIENT, modid = PooMod.MODID)
 public class ModelRegistrationHandler {
 
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
-		registerModel(Items.poo, 0);
-		registerModel(Items.pee, 0);
-		registerModel(Items.poosword, 0);
-		registerModel(Items.poopickaxe, 0);
-		registerModel(Items.pooaxe, 0);
-		registerModel(Items.pooshovel, 0);
-		registerModel(Items.poohoe, 0);
+		registerModel(Items.POO);
+		registerModel(Items.PEE);
+		registerModel(Items.POOAXE);
+		registerModel(Items.POOHOE);
+		registerModel(Items.POOPICKAXE);
+		registerModel(Items.POOSHOVEL);
+		registerModel(Items.POOSWORD);
+
 	}
-    private static void registerModel(Item item, int meta) {
-		System.out.println("DONE");
-		ModelLoader.setCustomModelResourceLocation(item, meta,
-				new ModelResourceLocation(item.getRegistryName(), "inventory"));
-		System.out.println("DONE");
+
+	private static void registerModel(Item item) {
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()), "inventory"));
 	}
+
 }

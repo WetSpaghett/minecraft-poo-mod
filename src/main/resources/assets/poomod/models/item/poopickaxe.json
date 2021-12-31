@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "poomod:items/poosword"
+        "layer0": "poomod:items/poopickaxe"
     }
 }
