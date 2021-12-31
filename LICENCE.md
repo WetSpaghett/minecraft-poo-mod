@@ -1,4 +1,4 @@
-#This software is licenced under the GNU GPL V2.
+# This software is licenced under the GNU GPL V2.
 a copy is included below.
 
 
