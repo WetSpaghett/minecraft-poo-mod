@@ -12,6 +12,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import static WetSpaghett.Mods.PooMod.Server.ChatHandler.chatMessage;
+
 @EventBusSubscriber(modid = PooMod.MODID)
 public class EventHandler {
     public static float foodEaten = 0f;
@@ -34,6 +36,7 @@ public class EventHandler {
         }
     }
 
+
     // Stops poo being given by starting and stopping eating another food, then eating poo or pee.
     @SubscribeEvent
     public static void PooCheaterChecker(LivingEntityUseItemEvent.Stop event) {
@@ -51,6 +54,8 @@ public class EventHandler {
             foodEaten += currentFood;
             if (foodEaten >= 20f) {
                 foodEaten -= 20f;
+                chatMessage("ME:  ...\nI shat myself...");
+                
                 ItemStack[] stacks = {
                         new ItemStack(Items.POO, 1),
                         new ItemStack(Items.PEE, 1)
