@@ -19,7 +19,7 @@ public class EventHandler {
     public static ItemFood food = null;
     public static boolean canGivePoo = false;
 
-    // Makes poo when you eat enough food (and pee)
+    // Gets all information for PooMaker() as you can't call event.getItemStack() from LivingEntityUseItemEvent.Finish
     @SubscribeEvent
     public static void PooChecker(PlayerInteractEvent.RightClickItem event) {
         World world = event.getEntity().getEntityWorld();
@@ -34,6 +34,7 @@ public class EventHandler {
         }
     }
 
+    // Stops poo being given by starting and stopping eating another food, then eating poo or pee.
     @SubscribeEvent
     public static void PooCheaterChecker(LivingEntityUseItemEvent.Stop event) {
         World world = event.getEntity().getEntityWorld();
@@ -42,6 +43,7 @@ public class EventHandler {
         }
     }
 
+    // Gives the player one poo and pee when they've eaten enough food.
     @SubscribeEvent
     public static void PooMaker(LivingEntityUseItemEvent.Finish event) {
         World world = event.getEntity().getEntityWorld();

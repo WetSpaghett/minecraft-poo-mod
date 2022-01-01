@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " PS",
+    "P S",
+    " PS"
+  ],
+  "key": {
+    "P": {
+      "item": "poomod:poo"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "poomod:poobow"
+  }
+}

@@ -16,6 +16,7 @@ import java.util.Objects;
 @EventBusSubscriber(value = Side.CLIENT, modid = PooMod.MODID)
 public class ModelRegistrationHandler {
 
+	// Register models for all items
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
@@ -26,9 +27,8 @@ public class ModelRegistrationHandler {
 		registerModel(Items.PEE, 0);
 		registerModel(Items.POOSHOVEL, 0);
 		registerModel(Items.POOSWORD, 0);
-
-
-
+		registerModel(Items.POOBOW, 0);
+		registerModel(Items.POOSHIELD, 0);
 	}
 
 	private static void registerModel(Item item, int meta) {

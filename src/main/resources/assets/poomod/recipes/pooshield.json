@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PSP",
+    "PPP",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "item": "poomod:poo"
+    },
+    "S": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "poomod:pooshield"
+  }
+}
