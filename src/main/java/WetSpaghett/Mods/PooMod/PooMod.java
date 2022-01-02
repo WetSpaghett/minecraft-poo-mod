@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 public class PooMod {
     public static final String MODID = "poomod";
     public static final String NAME = "Poo Mod";
-    public static final String VERSION = "v0.2.3";
+    public static final String VERSION = "v0.2.4";
     public static final Logger LOGGER = LogManager.getLogger(PooMod.MODID);
     public static Item.ToolMaterial POO = EnumHelper.addToolMaterial("PooMod.POO", 3, 512, 10f, 4f, 32);
 

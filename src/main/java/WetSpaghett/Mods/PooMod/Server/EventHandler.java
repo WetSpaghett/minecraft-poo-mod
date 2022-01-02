@@ -21,7 +21,7 @@ public class EventHandler {
     public static ItemFood food = null;
     public static boolean canGivePoo = false;
 
-    // Gets all information for PooMaker() as you can't call event.getItemStack() from LivingEntityUseItemEvent.Finish
+    // Gets all information for PooMaker()
     @SubscribeEvent
     public static void PooChecker(PlayerInteractEvent.RightClickItem event) {
         World world = event.getEntity().getEntityWorld();
@@ -29,7 +29,7 @@ public class EventHandler {
             if (event.getItemStack().getItemUseAction() == EnumAction.EAT) {
                 food = (ItemFood) event.getItemStack().getItem();
                 currentFood = food.getHealAmount(event.getItemStack());
-                if (!event.getItemStack().getItem().getUnlocalizedName().equals(Items.POO.getUnlocalizedName()) && (!event.getItemStack().getItem().getUnlocalizedName().equals(Items.PEE.getUnlocalizedName()))) {
+                if (!event.getItemStack().getItem().getUnlocalizedName().equals(Items.POO.getUnlocalizedName()) && !event.getItemStack().getItem().getUnlocalizedName().equals(Items.PEE.getUnlocalizedName())) {
                     canGivePoo = true;
                 }
             }
@@ -41,7 +41,7 @@ public class EventHandler {
     @SubscribeEvent
     public static void PooCheaterChecker(LivingEntityUseItemEvent.Stop event) {
         World world = event.getEntity().getEntityWorld();
-        if(!world.isRemote) {
+        if (!world.isRemote) {
             canGivePoo = false;
         }
     }
@@ -50,21 +50,18 @@ public class EventHandler {
     @SubscribeEvent
     public static void PooMaker(LivingEntityUseItemEvent.Finish event) {
         World world = event.getEntity().getEntityWorld();
-        if (canGivePoo) {
-            if(world.isRemote) {
+        if (canGivePoo && !world.isRemote) {
+            foodEaten += currentFood;
+            if (foodEaten >= 20f) {
                 ChatHandler.clientChatMessage("I shat myself...", (EntityPlayer) event.getEntity());
-            } else {
-                foodEaten += currentFood;
-                if (foodEaten >= 20f) {
-                    foodEaten -= 20f;
-                    ItemStack[] stacks = {
-                            new ItemStack(Items.POO, 1),
-                            new ItemStack(Items.PEE, 1)
-                    };
-                    world.spawnEntity(new EntityItem(world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, stacks[0]));
-                    world.spawnEntity(new EntityItem(world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, stacks[1]));
-                    canGivePoo = false;
-                }
+                foodEaten -= 20f;
+                ItemStack[] stacks = {
+                        new ItemStack(Items.POO, 1),
+                        new ItemStack(Items.PEE, 1)
+                };
+                world.spawnEntity(new EntityItem(world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, stacks[0]));
+                world.spawnEntity(new EntityItem(world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, stacks[1]));
+                canGivePoo = false;
             }
         }
     }
