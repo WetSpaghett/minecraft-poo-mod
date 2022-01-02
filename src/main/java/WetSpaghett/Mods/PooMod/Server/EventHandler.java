@@ -1,8 +1,10 @@
 package WetSpaghett.Mods.PooMod.Server;
 
+import WetSpaghett.Mods.EasyChatLib.*;
 import WetSpaghett.Mods.PooMod.Items;
 import WetSpaghett.Mods.PooMod.PooMod;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -11,8 +13,6 @@ import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import static WetSpaghett.Mods.PooMod.Server.ChatHandler.chatMessage;
 
 @EventBusSubscriber(modid = PooMod.MODID)
 public class EventHandler {
@@ -50,18 +50,21 @@ public class EventHandler {
     @SubscribeEvent
     public static void PooMaker(LivingEntityUseItemEvent.Finish event) {
         World world = event.getEntity().getEntityWorld();
-        if (!world.isRemote && canGivePoo) {
-            foodEaten += currentFood;
-            if (foodEaten >= 20f) {
-                foodEaten -= 20f;
-                chatMessage("ME:  ...\nI shat myself...");
-                
-                ItemStack[] stacks = {
-                        new ItemStack(Items.POO, 1),
-                        new ItemStack(Items.PEE, 1)
-                };
-                world.spawnEntity(new EntityItem(world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, stacks[0]));
-                world.spawnEntity(new EntityItem(world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, stacks[1]));
+        if (canGivePoo) {
+            if(world.isRemote) {
+                ChatHandler.clientChatMessage("I shat myself...", (EntityPlayer) event.getEntity());
+            } else {
+                foodEaten += currentFood;
+                if (foodEaten >= 20f) {
+                    foodEaten -= 20f;
+                    ItemStack[] stacks = {
+                            new ItemStack(Items.POO, 1),
+                            new ItemStack(Items.PEE, 1)
+                    };
+                    world.spawnEntity(new EntityItem(world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, stacks[0]));
+                    world.spawnEntity(new EntityItem(world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, stacks[1]));
+                    canGivePoo = false;
+                }
             }
         }
     }
