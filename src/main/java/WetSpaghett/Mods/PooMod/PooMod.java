@@ -1,5 +1,6 @@
 package WetSpaghett.Mods.PooMod;
 
+import WetSpaghett.Mods.ETILib.TinkerFluid;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Mod;
@@ -17,13 +18,15 @@ import slimeknights.tconstruct.library.materials.*;
 import slimeknights.tconstruct.library.smeltery.MeltingRecipe;
 import slimeknights.tconstruct.tools.TinkerTraits;
 
+import static WetSpaghett.Mods.ETILib.TinkerFluid.addIngotMeltingRecipe;
+import static WetSpaghett.Mods.ETILib.TinkerMaterials.TinkerMaterial.*;
 import static slimeknights.tconstruct.library.TinkerRegistry.*;
 
 @Mod(
         modid = PooMod.MODID,
         name = PooMod.NAME,
         version = PooMod.VERSION,
-        dependencies = "required-after:easychatlib@[v0.1.2,);after:tconstruct@[1.12.2-2.13.0.183,)"
+        dependencies = "after:tconstruct@[1.12.2-2.13.0.183,)"
 )
 public class PooMod {
     public static final String MODID = "poomod";
@@ -36,12 +39,12 @@ public class PooMod {
     @Mod.EventHandler
     @Optional.Method(modid = "tconstruct")
     public void tinkersPreInit(FMLPreInitializationEvent event) {
-        TinkerFluids.poo = new FluidMolten("poo", 6829056);
-        TinkerRegistry.addMaterialStats(TinkerMaterials.poo, new HeadMaterialStats(512, 10f, 4f, 3), new HandleMaterialStats(2f, -128), new ExtraMaterialStats(64));
-        TinkerRegistry.addMaterialStats(TinkerMaterials.poo, new BowMaterialStats(2f, 3f, 4f));
-        TinkerRegistry.addMaterialStats(TinkerMaterials.poo, new ArrowShaftMaterialStats(2f, 2));
-        addMaterial(TinkerMaterials.poo);
-        integrate(TinkerMaterials.poo);
+        TinkerFluids.poo = new TinkerFluid("poo", 6829056);
+        addHeadStats(TinkerMaterials.poo, 512, 10f, 4f, 3);
+        addHandleStats(TinkerMaterials.poo, 1f, -128);
+        addBowMaterialStats(TinkerMaterials.poo, 2f, 3f, 4f);
+        addArrowShaftStats(TinkerMaterials.poo, 2f, 2);
+        registerMaterial(TinkerMaterials.poo);
     }
     @Mod.EventHandler
     @Optional.Method(modid = "tconstruct")
@@ -50,12 +53,11 @@ public class PooMod {
     TinkerMaterials.poo.setRepresentativeItem(Items.poo);
     TinkerMaterials.poo.setFluid(TinkerFluids.poo);
     TinkerMaterials.poo.addTrait(TinkerTraits.poisonous, "head");
-    TinkerMaterials.poo.setCastable(true);
     }
     @Mod.EventHandler
     @Optional.Method(modid = "tconstruct")
     public void tinkersPostInit(FMLPostInitializationEvent event) {
-        registerMelting(new MeltingRecipe(RecipeMatch.of(Items.poo, 144), TinkerFluids.poo, 100));
+        addIngotMeltingRecipe(Items.poo, TinkerFluids.poo, 100);
     }
     // Pre-initialization
     @Mod.EventHandler
