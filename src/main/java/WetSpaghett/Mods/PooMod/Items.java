@@ -3,25 +3,32 @@ package WetSpaghett.Mods.PooMod;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
-// I don't know what ObjectHolders do, but I need them or the game crashes with a nullpointerexception.
 @ObjectHolder(PooMod.MODID)
 public class Items {
     @ObjectHolder("poopickaxe")
-    public static ItemPickaxe POOPICKAXE = null;
+    public static ItemPickaxe poopickaxe;
+
     @ObjectHolder("pooaxe")
-    public static ItemAxe POOAXE = null;
+    public static ItemAxe pooaxe;
+
     @ObjectHolder("poohoe")
-    public static ItemHoe POOHOE = null;
+    public static ItemHoe poohoe;
+
     @ObjectHolder("poo")
-    public static Item POO = null;
+    public static Item poo;
+
     @ObjectHolder("pee")
-    public static Item PEE = null;
+    public static Item pee;
+
     @ObjectHolder("pooshovel")
-    public static ItemSpade POOSHOVEL = null;
+    public static ItemSpade pooshovel;
+
     @ObjectHolder("poosword")
-    public static ItemSword POOSWORD = null;
+    public static ItemSword poosword;
+
     @ObjectHolder("poobow")
-    public static ItemBow POOBOW = null;
+    public static ItemBow poobow;
+
     @ObjectHolder("pooshield")
-    public static ItemShield POOSHIELD = null;
+    public static ItemShield pooshield = null;
 }

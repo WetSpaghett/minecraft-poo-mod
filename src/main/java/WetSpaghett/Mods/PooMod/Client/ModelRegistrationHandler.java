@@ -15,23 +15,22 @@ import java.util.Objects;
 
 @EventBusSubscriber(value = Side.CLIENT, modid = PooMod.MODID)
 public class ModelRegistrationHandler {
-
 	// Register models for all items
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
-		registerModel(Items.POOPICKAXE, 0);
-		registerModel(Items.POOAXE, 0);
-		registerModel(Items.POOHOE, 0);
-		registerModel(Items.POO, 0);
-		registerModel(Items.PEE, 0);
-		registerModel(Items.POOSHOVEL, 0);
-		registerModel(Items.POOSWORD, 0);
-		registerModel(Items.POOBOW, 0);
-		registerModel(Items.POOSHIELD, 0);
+		registerModel(Items.poopickaxe, 0);
+		registerModel(Items.pooaxe, 0);
+		registerModel(Items.poohoe, 0);
+		registerModel(Items.poo, 0);
+		registerModel(Items.pee, 0);
+		registerModel(Items.pooshovel, 0);
+		registerModel(Items.poosword, 0);
+		registerModel(Items.poobow, 0);
+		registerModel(Items.pooshield, 0);
 	}
 
-	private static void registerModel(Item item, int meta) {
+	public static void registerModel(Item item, int meta) {
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()), "inventory"));
 	}
 

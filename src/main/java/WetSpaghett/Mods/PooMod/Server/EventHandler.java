@@ -29,7 +29,7 @@ public class EventHandler {
             if (event.getItemStack().getItemUseAction() == EnumAction.EAT) {
                 food = (ItemFood) event.getItemStack().getItem();
                 currentFood = food.getHealAmount(event.getItemStack());
-                if (!event.getItemStack().getItem().getUnlocalizedName().equals(Items.POO.getUnlocalizedName()) && !event.getItemStack().getItem().getUnlocalizedName().equals(Items.PEE.getUnlocalizedName())) {
+                if (!event.getItemStack().getItem().getUnlocalizedName().equals(Items.poo.getUnlocalizedName()) && !event.getItemStack().getItem().getUnlocalizedName().equals(Items.pee.getUnlocalizedName())) {
                     canGivePoo = true;
                 }
             }
@@ -56,8 +56,8 @@ public class EventHandler {
                 ChatHandler.clientChatMessage("I shat myself...", (EntityPlayer) event.getEntity());
                 foodEaten -= 20f;
                 ItemStack[] stacks = {
-                        new ItemStack(Items.POO, 1),
-                        new ItemStack(Items.PEE, 1)
+                        new ItemStack(Items.poo, 1),
+                        new ItemStack(Items.pee, 1)
                 };
                 world.spawnEntity(new EntityItem(world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, stacks[0]));
                 world.spawnEntity(new EntityItem(world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, stacks[1]));
