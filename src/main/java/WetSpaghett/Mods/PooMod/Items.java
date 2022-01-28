@@ -31,4 +31,7 @@ public class Items {
 
     @ObjectHolder("pooshield")
     public static ItemShield pooshield = null;
+
+    @ObjectHolder("pooblock")
+    public static ItemBlock pooblock = null;
 }

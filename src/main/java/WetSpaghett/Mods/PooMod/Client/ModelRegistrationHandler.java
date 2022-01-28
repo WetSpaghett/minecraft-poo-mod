@@ -28,6 +28,7 @@ public class ModelRegistrationHandler {
 		registerModel(Items.poosword, 0);
 		registerModel(Items.poobow, 0);
 		registerModel(Items.pooshield, 0);
+		registerModel(Items.pooblock, 0);
 	}
 
 	public static void registerModel(Item item, int meta) {

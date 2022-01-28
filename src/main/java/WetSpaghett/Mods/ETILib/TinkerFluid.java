@@ -9,33 +9,54 @@ import slimeknights.tconstruct.library.smeltery.MeltingRecipe;
 
 import static slimeknights.tconstruct.library.TinkerRegistry.registerMelting;
 
-public class TinkerFluid extends FluidMolten {
+public class TinkerFluid {
+    public Fluid fluid;
 
     /**
-     * Uses default molten metal textures.
+     * Creates a Tinker's Construct fluid. Uses default molten metal textures.
+     * @param name The name of your fluid.
+     * @param colour The colour of your fluid. This is a typical hex colour put through a hex to decimal converter.
      */
     public TinkerFluid(String name, int colour) {
-        super(name, colour);
+        this.setFluid(new FluidMolten(name, colour));
     }
 
     /**
-     * Uses custom fluid textures.
+     * Creates a Tinker's Construct fluid. Uses custom fluid textures.
+     * @param name The name of your fluid.
+     * @param colour The colour of your fluid. This is a typical hex colour put through a hex to decimal converter.
+     * @param pathToStill The path to the still texture of your fluid.
+     * @param pathToFlowing The path to the flowing texture of your fluid.
      */
     public TinkerFluid(String name, int colour, String pathToStill, String pathToFlowing) {
-        super(name, colour, new ResourceLocation(pathToStill), new ResourceLocation(pathToFlowing));
+        this.setFluid(new FluidMolten(name, colour, new ResourceLocation(pathToStill), new ResourceLocation(pathToFlowing)));
     }
 
     /**
-     * Should be called from Post-Initialization.
+     * Adds a melting recipe for ingots. Should be called from Post-Initialization.
+     * @param item The Item that will be melted.
+     * @param fluid The fluid output of the melting recipe.
+     * @param temperature The melting temperature of the Item. Lower temperatures melt faster.
      */
-    public static void addIngotMeltingRecipe(Item item, Fluid fl, int temperature) {
-        addMeltingRecipe(item, fl, 144, temperature);
+    public void addIngotMeltingRecipe(Item item, Fluid fluid, int temperature) {
+        addMeltingRecipe(item, fluid, 144, temperature);
     }
 
     /**
-     * Should be called from Post-Initialization.
+     * Adds a generic melting recipe. Should be called from Post-Initialization.
+     * @param item The Item that will be melted.
+     * @param fluid The fluid output of the melting recipe.
+     * @param temperature The melting temperature of the Item. Lower temperatures melt faster.
      */
-    public static void addMeltingRecipe(Item item, Fluid fl, int amount, int temperature) {
-        registerMelting(new MeltingRecipe(RecipeMatch.of(item, amount), fl, temperature));
+    public void addMeltingRecipe(Item item, Fluid fluid, int amount, int temperature) {
+        registerMelting(new MeltingRecipe(RecipeMatch.of(item, amount), fluid, temperature));
+    }
+
+    public void setFluid(Fluid fluid) {
+        this.fluid = fluid;
+    }
+
+    public Fluid getFluid() {
+        return this.fluid;
     }
 }

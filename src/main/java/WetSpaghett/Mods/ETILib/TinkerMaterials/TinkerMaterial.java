@@ -6,81 +6,104 @@ import slimeknights.tconstruct.library.materials.*;
 import static slimeknights.tconstruct.library.TinkerRegistry.addMaterial;
 import static slimeknights.tconstruct.library.TinkerRegistry.integrate;
 
-public class TinkerMaterial extends Material {
-
+public class TinkerMaterial {
+    public Material material;
     /**
-     * Despite what Tinker's Construct's formal parameters may lead you to believe, colour in this instance is not a text colour, but the colour of your material
-     * as a tool part such as a pickaxe head or a tool rod. <br>
-     * The colour is just a regular hex colour value, converted to decimal.
+     * Creates a new Material that can't be casted.
+     * @param identifier The unique name of your Material.
+     * @param colour The colour of your material as a tool part. This is a typical hex colour put through a hex to decimal converter.
      */
     public TinkerMaterial(String identifier, int colour) {
-        super(identifier, colour);
-        this.setCastable(false);
-        this.setCraftable(true);
+        this.setMaterial(new Material(identifier, colour));
+        this.getMaterial().setCastable(false);
+        this.getMaterial().setCraftable(true);
     }
 
     /**
-     * Adds stats for when the material is used as a tool head. <br>
-     * Should be called from Pre-Initialization.
+     * Adds stats for when the material is used as a tool head. Should be run in Pre-Initialization.
+     * @param headDurability How much durability the tool head has.
+     * @param miningSpeed How fast the tool will mine.
+     * @param attackDamage How much damage the head will do.
+     * @param harvestLevel The level of blocks can the tool break. The maximum in vanilla is 3.
      */
-    public static void addHeadStats(Material mat, int headDurability, Float miningSpeed, Float attackDamage, int harvestLevel) {
-        TinkerRegistry.addMaterialStats(mat, new HeadMaterialStats(headDurability, miningSpeed, attackDamage, harvestLevel));
+    public TinkerMaterial addHeadStats(int headDurability, Float miningSpeed, Float attackDamage, int harvestLevel) {
+        TinkerRegistry.addMaterialStats(this.getMaterial(), new HeadMaterialStats(headDurability, miningSpeed, attackDamage, harvestLevel));
+        return this;
     }
 
     /**
-     * Adds stats for when the material is used as a tool handle. <br>
-     * Should be called from Pre-Initialization.
+     * Adds stats for when the material is used as a tool handle. Should be run in Pre-Initialization.
+     * @param handleModifier Multiplies durability of the tool. For example, a modifier of 0.5 would half the finished tool's maximum durability.
+     * @param handleDurability The durability of the handle.
      */
-    public static void addHandleStats(Material mat, Float handleModifier, int handleDurability) {
-        TinkerRegistry.addMaterialStats(mat, new HandleMaterialStats(handleModifier, handleDurability));
+    public TinkerMaterial addHandleStats(Float handleModifier, int handleDurability) {
+        TinkerRegistry.addMaterialStats(this.getMaterial(), new HandleMaterialStats(handleModifier, handleDurability));
+        return this;
     }
 
     /**
-     * Adds stats for when the material is used as a tool binding or large plate. <br>
-     * Should be called from Pre-Initialization.
+     * Adds stats for when the material is used as a tool binding or large plate. Should be run in Pre-Initialization.
+     * @param extraDurability The durability of the tool part.
      */
-    public static void addExtraStats(Material mat, int extraDurability) {
-        TinkerRegistry.addMaterialStats(mat, new ExtraMaterialStats(extraDurability));
+    public TinkerMaterial addExtraStats(int extraDurability) {
+        TinkerRegistry.addMaterialStats(this.getMaterial(), new ExtraMaterialStats(extraDurability));
+        return this;
     }
 
     /**
-     * Adds stats for when the material is used as a bowlimb. <br>
-     * Should be called from Pre-Initialization.
+     * Adds stats for when the material is used as a bowlimb. Should be run in Pre-Initialization.
+     * @param drawSpeed The speed at which the bow draws.
+     * @param range The distance the arrow will fly.
+     * @param bonusDamage The amount of extra damage added by the bow.
      */
-    public static void addBowMaterialStats(Material mat, Float drawSpeed, Float range, Float bonusDamage) {
-        TinkerRegistry.addMaterialStats(mat, new BowMaterialStats(drawSpeed, range, bonusDamage));
+    public TinkerMaterial addBowMaterialStats(Float drawSpeed, Float range, Float bonusDamage) {
+        TinkerRegistry.addMaterialStats(this.getMaterial(), new BowMaterialStats(drawSpeed, range, bonusDamage));
+        return this;
     }
 
     /**
-     * Adds stats for when the material is used as a bowstring. <br>
-     * Should be called from Pre-Initialization.
+     * Adds stats for when the material is used as a bowstring. Should be run in Pre-Initialization.
+     * @param bowstringModifier Multiplies durability of the bow. For example, a modifier of 0.5 would half the finished bow's maximum durability.
      */
-    public static void addBowstringStats(Material mat, Float bowstringModifier) {
-        TinkerRegistry.addMaterialStats(mat, new BowStringMaterialStats(bowstringModifier));
+    public TinkerMaterial addBowstringStats(Float bowstringModifier) {
+        TinkerRegistry.addMaterialStats(this.getMaterial(), new BowStringMaterialStats(bowstringModifier));
+        return this;
     }
 
     /**
-     * Adds stats for when the material is used as an arrow shaft. <br>
-     * Should be called from Pre-Initialization.
+     * Adds stats for when the material is used as an arrow shaft. Should be run in Pre-Initialization.
+     * @param arrowModifier Multiplies durability of the arrow. For example, a modifier of 0.5 would half the finished arrow's maximum durability.
+     * @param extraAmmo Extra ammo added by the arrow shaft.
      */
-    public static void addArrowShaftStats(Material mat, Float arrowModifier, int extraAmmo) {
-        TinkerRegistry.addMaterialStats(mat, new ArrowShaftMaterialStats(arrowModifier, extraAmmo));
+    public TinkerMaterial addArrowShaftStats(Float arrowModifier, int extraAmmo) {
+        TinkerRegistry.addMaterialStats(this.getMaterial(), new ArrowShaftMaterialStats(arrowModifier, extraAmmo));
+        return this;
     }
 
     /**
-     * Adds stats for when the material is used as an arrow's fletching. <br>
-     * Should be called from Pre-Initialization.
+     * Adds stats for when the material is used as an arrow's fletching. Should be run in Pre-Initialization.
+     * @param accuracy How accurate the arrow will be.
+     * @param fletchingModifier Multiplies durability of the arrow. For example, a modifier of 0.5 would half the finished arrow's maximum durability.
      */
-    public static void addFletchingStats(Material mat, Float accuracy, Float fletchingModifier) {
-        TinkerRegistry.addMaterialStats(mat, new FletchingMaterialStats(accuracy, fletchingModifier));
+    public TinkerMaterial addFletchingStats(Float accuracy, Float fletchingModifier) {
+        TinkerRegistry.addMaterialStats(this.getMaterial(), new FletchingMaterialStats(accuracy, fletchingModifier));
+        return this;
     }
 
     /**
-     * Registers your material. <br>
-     * Should be called from Pre-Initialization.
+     * Registers a material. Should be run in Pre-Initialization.
      */
-    public static void registerMaterial(Material mat) {
-        addMaterial(mat);
-        integrate(mat);
+    public TinkerMaterial registerMaterial() {
+        addMaterial(this.getMaterial());
+        integrate(this.getMaterial());
+        return this;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public Material getMaterial() {
+        return this.material;
     }
 }

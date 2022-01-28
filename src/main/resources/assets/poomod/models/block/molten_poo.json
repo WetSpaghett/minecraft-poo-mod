@@ -1,9 +1,0 @@
-{
-    "forge_marker": 1,
-	"variants": {
-	    "fluids": {
-		    "model": "tconstruct:blocks/fluids/molten_metal",
-			"custom": { "fluid": "tconstruct:molten_poo" }
-			}
-	}
-}
