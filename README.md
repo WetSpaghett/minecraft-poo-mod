@@ -1,3 +1,5 @@
+# THIS MOD IS NOT BEING WORKED ON ANYMORE.
+
 # minecraft-poo-mod
 A mod that adds pee and poo into minecraft.
 <br>
